@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Controllers\Api\CustomerModuleController.cs" />
     <Compile Include="JsonConverters\PolymorphicMemberJsonConverter.cs" />
+    <Compile Include="Model\PlentyOrganizationsRequest.cs" />
     <Compile Include="Model\VendorSearchResult.cs" />
     <Compile Include="Security\CustomerPredefinedPermissions.cs" />
     <Compile Include="ExportImport\CustomerExportImport.cs" />

@@ -368,14 +368,14 @@ namespace VirtoCommerce.CustomerModule.Web.Controllers.Api
         /// <summary>
         /// Get plenty organizations
         /// </summary>
-        /// <param name="ids">Organization ids</param>
+        /// <param name="request">Request with Ids</param>
         /// <param name="responseGroup">Response group flags controls fullness of resulting object graph</param>
         [HttpPost]
         [Route("organizations/plenty")]
         [ResponseType(typeof(Organization[]))]
-        public IHttpActionResult GetPlentyOrganizationsByIds([FromBody]string[] ids, [FromUri]string responseGroup = null)
+        public IHttpActionResult GetPlentyOrganizationsByIds([FromBody]PlentyOrganizationsRequest request, [FromUri]string responseGroup = null)
         {
-            return GetMembersByIds(ids, responseGroup, new[] { typeof(Organization).Name });
+            return GetMembersByIds(request.Ids.ToArray(), responseGroup, new[] { typeof(Organization).Name });
         }
 
         /// <summary>
@@ -598,7 +598,10 @@ namespace VirtoCommerce.CustomerModule.Web.Controllers.Api
                 }
             }
 
-            return GetPlentyOrganizationsByIds(organizationsIds.ToArray());
+            return GetPlentyOrganizationsByIds(new PlentyOrganizationsRequest
+            {
+                Ids = organizationsIds.ToList()
+            });
         }
 
         #endregion Special members for storefront C# API client  (because it not support polymorph types)
